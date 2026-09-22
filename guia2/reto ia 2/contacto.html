@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Contacta a FURESA: escríbenos para planificar una visita, ser voluntario o realizar una donación. Refugio de fauna silvestre en Jayaque, La Libertad, El Salvador.">
+
+    <meta name="theme-color" content="#d7eb80">
+
+    <title>Contacto | FURESA</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER / NAVBAR
+    ========================== -->
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Navegación principal">
+
+            <a href="index.html" class="navbar__logo" aria-label="FURESA - Inicio">
+                FURESA
+            </a>
+
+            <div class="navbar__links">
+                <a href="index.html" class="navbar__link">Inicio</a>
+                <a href="servicios.html" class="navbar__link">Servicios</a>
+                <a href="contacto.html" class="navbar__link">Contacto</a>
+                <a href="contacto.html#donar" class="btn btn-primary">
+                    Donar
+                </a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+             ENCABEZADO DE PÁGINA
+        ========================== -->
+
+        <section class="section" style="padding-top: 160px;">
+            <div class="container fade-in" style="text-align: center; max-width: 680px; margin: 0 auto;">
+                <span class="eyebrow">Hablemos</span>
+                <h1 class="section-title" style="font-size: var(--text-display); margin-bottom: var(--spacing-16);">
+                    Escríbenos y sé parte del cambio
+                </h1>
+                <p>
+                    ¿Quieres visitarnos, colaborar como voluntario o realizar
+                    una donación? Cuéntanos cómo podemos ayudarte y te
+                    responderemos a la brevedad.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- =========================
+             FORMULARIO + INFORMACIÓN
+        ========================== -->
+
+        <section id="donar" class="section" style="padding-top: 0;">
+            <div class="container split" style="align-items: flex-start;">
+
+                <!-- Columna 1: Formulario -->
+                <form class="card" style="background-color: var(--surface-soft-card);" action="mailto:info@furesa.com.sv" method="post" enctype="text/plain">
+
+                    <h2 class="card__title" style="font-size: var(--text-heading); margin-bottom: var(--spacing-24);">
+                        Envíanos un mensaje
+                    </h2>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input
+                                class="form-field"
+                                type="text"
+                                id="nombre"
+                                name="nombre"
+                                placeholder="Tu nombre completo"
+                                autocomplete="name"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input
+                                class="form-field"
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="tu@email.com"
+                                autocomplete="email"
+                                required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="asunto">Tipo de solicitud</label>
+                        <select class="form-field" id="asunto" name="asunto">
+                            <option value="visita">Quiero realizar una visita</option>
+                            <option value="voluntariado">Quiero ser voluntario</option>
+                            <option value="donacion">Quiero realizar una donación</option>
+                            <option value="informacion">Solicitar información</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea
+                            class="form-field"
+                            id="mensaje"
+                            name="mensaje"
+                            rows="5"
+                            placeholder="Cuéntanos cómo podemos ayudarte..."
+                            required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        Enviar mensaje →
+                    </button>
+
+                </form>
+
+                <!-- Columna 2: Información y ubicación -->
+                <div style="display: flex; flex-direction: column; gap: var(--spacing-24);">
+
+                    <article class="card" style="background-color: var(--surface-soft-card);">
+                        <span class="chip">📍 Ubicación</span>
+                        <h3 class="card__title" style="margin-top: var(--spacing-16);">
+                            Jayaque, La Libertad
+                        </h3>
+                        <p class="card__text">
+                            El Salvador, Centroamérica. A pocos minutos de la
+                            Carretera Litoral, en la ruta hacia la costa.
+                        </p>
+                    </article>
+
+                    <article class="card" style="background-color: var(--surface-soft-card);">
+                        <span class="chip">☎ Atención</span>
+                        <h3 class="card__title" style="margin-top: var(--spacing-16);">
+                            +503 2345-6789
+                        </h3>
+                        <p class="card__text">
+                            Lunes a sábado, 8:00 a.m. – 5:00 p.m.
+                        </p>
+                    </article>
+
+                    <article class="card" style="background-color: var(--surface-soft-card);">
+                        <span class="chip">✉ Correo</span>
+                        <h3 class="card__title" style="margin-top: var(--spacing-16);">
+                            info@furesa.com.sv
+                        </h3>
+                        <p class="card__text">
+                            Te respondemos en un plazo máximo de 48 horas.
+                        </p>
+                    </article>
+
+                    <article class="card" style="background-color: var(--surface-soft-card);">
+                        <span class="chip">🕐 Horario de visitas</span>
+                        <h3 class="card__title" style="margin-top: var(--spacing-16);">
+                            Martes a domingo
+                        </h3>
+                        <p class="card__text">
+                            8:00 a.m. – 4:00 p.m. Última entrada a las 3:00 p.m.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+        <div class="container grid grid--4">
+
+            <div class="footer-brand">
+                <span class="navbar__logo">FURESA</span>
+                <p class="card__text" style="margin-top: var(--spacing-16);">
+                    Protegiendo nuestra fauna, conservando nuestros
+                    ecosistemas y educando para un futuro sostenible.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="card__title">Explora</h3>
+                <div style="display: flex; flex-direction: column; gap: var(--spacing-8); margin-top: var(--spacing-16);">
+                    <a href="index.html" class="navbar__link">Inicio</a>
+                    <a href="servicios.html" class="navbar__link">Servicios</a>
+                    <a href="contacto.html" class="navbar__link">Contacto</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="card__title">Ayúdanos</h3>
+                <div style="display: flex; flex-direction: column; gap: var(--spacing-8); margin-top: var(--spacing-16);">
+                    <a href="contacto.html#donar" class="navbar__link">Donar</a>
+                    <a href="contacto.html" class="navbar__link">Voluntariado</a>
+                    <a href="contacto.html" class="navbar__link">Colaborar</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="card__title">Síguenos</h3>
+                <div style="display: flex; gap: var(--spacing-16); margin-top: var(--spacing-16);">
+                    <a href="#" aria-label="Facebook" class="chip">f</a>
+                    <a href="#" aria-label="Instagram" class="chip">◎</a>
+                    <a href="#" aria-label="YouTube" class="chip">▶</a>
+                </div>
+                <p class="card__text" style="margin-top: var(--spacing-16);">
+                    El Salvador, Centroamérica
+                </p>
+            </div>
+
+        </div>
+
+        <div class="container" style="display: flex; justify-content: space-between; padding-top: var(--spacing-24); margin-top: var(--spacing-24); border-top: 1px solid var(--color-linen-cream);">
+            <p class="card__text">© 2026 FURESA. Todos los derechos reservados.</p>
+            <p class="card__text">Conservación de fauna salvadoreña</p>
+        </div>
+    </footer>
+
+</body>
+</html>

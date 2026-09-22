@@ -1,0 +1,594 @@
+/* ==========================================================================
+   styles.css — Hoja de estilos compartida
+   Basada en design.md (referencia de estilo Ecosia)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap');
+
+/* ==========================================================================
+   1. TOKENS — Variables CSS
+   ========================================================================== */
+
+:root {
+  /* Colores */
+  --color-lime-canopy: #d7eb80;
+  --color-ink-black: #333333;
+  --color-paper-white: #ffffff;
+  --color-warm-mist: #f8f8f6;
+  --color-linen-cream: #f0f0eb;
+  --color-stone-gray: #6c6c6c;
+  --color-ash-border: #bebeb9;
+  --color-silver-surface: #b6b6b6;
+
+  /* Tipografía — Familias */
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter Tight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Tipografía — Escala */
+  --text-caption: 12px;
+  --leading-caption: 1.4;
+  --tracking-caption: 0.084px;
+
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.4;
+  --tracking-body-sm: 0.098px;
+
+  --text-body: 16px;
+  --leading-body: 1.4;
+  --tracking-body: 0.112px;
+
+  --text-subheading: 18px;
+  --leading-subheading: 1.4;
+
+  --text-heading-sm: 20px;
+  --leading-heading-sm: 1.3;
+
+  --text-heading: 24px;
+  --leading-heading: 1.3;
+
+  --text-heading-lg: 36px;
+  --leading-heading-lg: 1.15;
+
+  --text-display: 48px;
+  --leading-display: 1.1;
+
+  --text-display-lg: 54px;
+  --leading-display-lg: 1.1;
+
+  /* Tipografía — Pesos */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Espaciado (unidad base 8px) */
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-80: 80px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 16px;
+
+  /* Radios de borde */
+  --radius-links: 4px;
+  --radius-cards: 20px;
+  --radius-buttons: 9999px;
+  --radius-inputs: 9999px;
+  --radius-chips: 9999px;
+
+  /* Sombras */
+  --shadow-xl: rgba(0, 0, 0, 0.2) 0px 11px 33px 0px;
+
+  /* Superficies */
+  --surface-page-canvas: #ffffff;
+  --surface-soft-card: #f8f8f6;
+  --surface-warm-band: #f0f0eb;
+  --surface-hero-overlay: rgba(0, 0, 0, 0.35);
+
+  /* Transiciones (usadas de forma consistente en todo el sistema) */
+  --transition-base: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  --transition-fade: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* ==========================================================================
+   2. RESET Y BASE
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--surface-page-canvas);
+  color: var(--color-ink-black);
+  font-family: var(--font-inter);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink-black);
+}
+
+p {
+  margin: 0;
+  color: var(--color-stone-gray);
+}
+
+.container {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-24);
+}
+
+section {
+  padding-block: var(--section-gap);
+}
+
+/* ==========================================================================
+   3. ANIMACIÓN GLOBAL — fade-in al cargar
+   ========================================================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease both;
+}
+
+.fade-in-delay-1 { animation-delay: 0.1s; }
+.fade-in-delay-2 { animation-delay: 0.2s; }
+.fade-in-delay-3 { animation-delay: 0.3s; }
+
+/* ==========================================================================
+   4. NAVBAR
+   ========================================================================== */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-16) var(--spacing-24);
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-linen-cream);
+}
+
+.navbar__logo {
+  font-family: var(--font-inter);
+  font-size: var(--text-subheading);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-black);
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-32);
+}
+
+.navbar__link {
+  font-size: var(--text-body-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink-black);
+  transition: var(--transition-base);
+}
+
+.navbar__link:hover {
+  color: var(--color-stone-gray);
+}
+
+/* ==========================================================================
+   5. BOTONES
+   ========================================================================== */
+
+.btn-primary,
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+  border-radius: var(--radius-buttons);
+  font-family: var(--font-inter);
+  font-size: var(--text-body-sm);
+  font-weight: var(--font-weight-semibold);
+  padding: 13px 22px;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition-base);
+  white-space: nowrap;
+}
+
+/* Botón primario — píldora lime, la única acción cromática rellena */
+.btn-primary {
+  background-color: var(--color-lime-canopy);
+  color: var(--color-ink-black);
+  box-shadow: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background-color: #cbe36a;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Botón secundario — outline */
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-ink-black);
+  border: 1px solid var(--color-ink-black);
+  font-weight: var(--font-weight-medium);
+  padding: 12px 21px;
+}
+
+.btn-outline:hover {
+  transform: translateY(-2px);
+  background-color: var(--color-ink-black);
+  color: var(--color-paper-white);
+}
+
+.btn-outline:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   6. TARJETAS (CARDS)
+   ========================================================================== */
+
+.card {
+  background-color: var(--surface-soft-card);
+  border-radius: var(--radius-cards);
+  padding: var(--card-padding);
+  transition: var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  background-color: var(--surface-warm-band);
+}
+
+.card__title {
+  font-family: var(--font-inter);
+  font-size: var(--text-subheading);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink-black);
+  margin-bottom: var(--spacing-8);
+}
+
+.card__text {
+  font-size: var(--text-body-sm);
+  color: var(--color-stone-gray);
+  line-height: var(--leading-body-sm);
+}
+
+.card--image {
+  padding: 0;
+  overflow: hidden;
+}
+
+.card--image img {
+  border-radius: var(--radius-cards);
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   7. CHIPS / ETIQUETAS
+   ========================================================================== */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-chips);
+  padding: 8px 14px;
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-medium);
+  background-color: var(--surface-warm-band);
+  color: var(--color-ink-black);
+  transition: var(--transition-base);
+}
+
+.chip--outline {
+  background-color: transparent;
+  border: 1px solid var(--color-ink-black);
+}
+
+/* ==========================================================================
+   8. TIPOGRAFÍA — Encabezados y utilidades
+   ========================================================================== */
+
+.eyebrow {
+  display: block;
+  text-transform: uppercase;
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.1em;
+  color: var(--color-stone-gray);
+  margin-bottom: var(--spacing-16);
+}
+
+.section-title {
+  font-size: var(--text-heading-lg);
+  line-height: var(--leading-heading-lg);
+}
+
+.hero-title {
+  font-size: var(--text-display-lg);
+  line-height: var(--leading-display-lg);
+  color: var(--color-paper-white);
+}
+
+/* ==========================================================================
+   9. HERO
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-40);
+  background-size: cover;
+  background-position: center;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 100%);
+  z-index: 0;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-24);
+  max-width: 720px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+  width: 100%;
+  background-color: var(--color-paper-white);
+  border-radius: var(--radius-inputs);
+  padding: 16px 24px;
+  transition: var(--transition-base);
+}
+
+.search-bar:focus-within {
+  box-shadow: var(--shadow-xl);
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: var(--font-inter);
+  font-size: var(--text-body);
+  color: var(--color-ink-black);
+  background: transparent;
+}
+
+.search-bar input::placeholder {
+  color: var(--color-stone-gray);
+}
+
+.stats-overlay {
+  display: flex;
+  gap: var(--spacing-24);
+  background-color: var(--surface-hero-overlay);
+  backdrop-filter: blur(6px);
+  border-radius: var(--radius-cards);
+  padding: var(--spacing-24) var(--spacing-32);
+  box-shadow: var(--shadow-xl);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat__value {
+  font-size: var(--text-heading-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-paper-white);
+}
+
+.stat__label {
+  font-size: var(--text-caption);
+  color: var(--color-lime-canopy);
+}
+
+/* ==========================================================================
+   10. GRID Y LAYOUT
+   ========================================================================== */
+
+.grid {
+  display: grid;
+  gap: var(--spacing-32);
+}
+
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-40);
+  align-items: center;
+}
+
+/* ==========================================================================
+   11. FOOTER
+   ========================================================================== */
+
+.footer {
+  border-top: 1px solid var(--color-linen-cream);
+  padding: var(--spacing-40) 0;
+  color: var(--color-stone-gray);
+  font-size: var(--text-body-sm);
+}
+
+/* ==========================================================================
+   12. VIDEO EMBED
+   ========================================================================== */
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding-top: 56.25%; /* proporción 16:9 */
+  border-radius: var(--radius-cards);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.video-container iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ==========================================================================
+   14. FORMULARIOS
+   ========================================================================== */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: var(--spacing-24);
+}
+
+.form-group label {
+  font-size: var(--text-body-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink-black);
+}
+
+.form-field {
+  width: 100%;
+  font-family: var(--font-inter);
+  font-size: var(--text-body);
+  color: var(--color-ink-black);
+  background-color: var(--color-paper-white);
+  border: 1px solid var(--color-ash-border);
+  border-radius: var(--radius-cards);
+  padding: 14px 20px;
+  transition: var(--transition-base);
+}
+
+input.form-field,
+select.form-field {
+  border-radius: var(--radius-inputs);
+}
+
+textarea.form-field {
+  border-radius: var(--radius-links);
+  border-radius: 20px;
+  resize: vertical;
+  min-height: 140px;
+}
+
+.form-field::placeholder {
+  color: var(--color-stone-gray);
+}
+
+.form-field:focus {
+  outline: none;
+  border-color: var(--color-lime-canopy);
+  box-shadow: 0 0 0 4px rgba(215, 235, 128, 0.35);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-24);
+}
+
+/* ==========================================================================
+   15. RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .grid--3 { grid-template-columns: repeat(2, 1fr); }
+  .split { grid-template-columns: 1fr; }
+  .hero-title { font-size: var(--text-display); }
+}
+
+@media (max-width: 600px) {
+  .grid--4,
+  .grid--3,
+  .grid--2 { grid-template-columns: 1fr; }
+  .stats-overlay { flex-direction: column; }
+  .navbar__links { gap: var(--spacing-16); }
+  .form-row { grid-template-columns: 1fr; }
+}
