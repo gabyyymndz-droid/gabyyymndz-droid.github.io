@@ -1,0 +1,36 @@
+/* Posicionamiento para todos los contenedores de las cartas */
+div {
+  position: absolute;
+}
+
+#diez_de_diamantes {
+  top: 100px;
+  left: 100px;
+  z-index: 5; /*sobre*/
+}
+
+#sota_de_diamantes {
+  top: 115px;
+  left: 115px;
+  z-index: 4;
+}
+
+#reina_de_diamantes {
+  top: 130px;
+  left: 130px;
+  z-index: 3;
+}
+
+#rey_de_diamantes {
+  top: 145px;
+  left: 145px;
+  z-index: 2;
+}
+
+#as_de_diamantes {
+  top: 160px;
+  left: 160px;
+  z-index: 1; /*al fondo*/
+}
+
+/*para cambiar el orden solo se cambia el numero de z index :)*/
