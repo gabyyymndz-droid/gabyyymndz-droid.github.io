@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contacto | FURESA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="layout-grid interior-layout">
+
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <a href="index.html" class="brand">
+                <span class="brand-icon">F</span>
+
+                <span class="brand-copy">
+                    <strong>FURESA</strong>
+                    <small>Fundación Refugio Salvaje</small>
+                </span>
+            </a>
+
+            <nav class="main-nav">
+                <a href="index.html">Inicio</a>
+                <a href="animales.html">Animales</a>
+                <a href="ecoturismo.html">Ecoturismo</a>
+                <a href="donar.html">Donar</a>
+                <a href="contacto.html" class="active">Contacto</a>
+            </nav>
+
+            <a href="donar.html" class="btn btn-donate">
+                Quiero ayudar
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <section class="hero page-hero contact-hero">
+
+        <div class="hero-overlay"></div>
+
+        <div class="page-hero-content">
+
+            <span class="eyebrow">
+                Estamos para ayudarte
+            </span>
+
+            <h1>Hablemos</h1>
+
+            <p>
+                ¿Querés visitar FURESA, apoyar nuestra misión
+                o necesitás más información?
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <main class="main-content">
+
+        <section class="intro-section">
+
+            <span class="section-label">
+                Contacto
+            </span>
+
+            <h2>Envíanos un mensaje</h2>
+
+            <p>
+                Completa el formulario y selecciona el motivo
+                principal de tu consulta.
+            </p>
+
+        </section>
+
+
+        <form class="contact-form">
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="nombre">Nombre completo</label>
+
+                    <input
+                        type="text"
+                        id="nombre"
+                        name="nombre"
+                        placeholder="Tu nombre"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="correo">Correo electrónico</label>
+
+                    <input
+                        type="email"
+                        id="correo"
+                        name="correo"
+                        placeholder="nombre@correo.com"
+                        required
+                    >
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="telefono">
+                        Teléfono
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="telefono"
+                        name="telefono"
+                        placeholder="+503 0000-0000"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="asunto">
+                        Motivo
+                    </label>
+
+                    <select id="asunto" name="asunto">
+
+                        <option value="visita">
+                            Información de visita
+                        </option>
+
+                        <option value="donacion">
+                            Donaciones
+                        </option>
+
+                        <option value="apadrinamiento">
+                            Apadrinamiento
+                        </option>
+
+                        <option value="educacion">
+                            Educación ambiental
+                        </option>
+
+                        <option value="otro">
+                            Otro
+                        </option>
+
+                    </select>
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="mensaje">
+                    Mensaje
+                </label>
+
+                <textarea
+                    id="mensaje"
+                    name="mensaje"
+                    rows="7"
+                    placeholder="Escribí tu consulta aquí..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">
+                Enviar mensaje →
+            </button>
+
+        </form>
+
+    </main>
+
+
+    <aside class="sidebar">
+
+        <section class="support-card">
+
+            <h2>Visítanos</h2>
+
+            <p>
+                FURESA se encuentra en Jayaque,
+                departamento de La Libertad, El Salvador.
+            </p>
+
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=FURESA+Jayaque+El+Salvador" target="_blank" rel="noopener noreferrer">
+                Abrir en Google Maps →
+            </a>
+
+        </section>
+
+
+        <section class="eco-card">
+
+            <h3>¿Planeando una visita?</h3>
+
+            <p>
+                Revisa primero la información de ecoturismo,
+                horarios y recomendaciones.
+            </p>
+
+            <a href="ecoturismo.html">
+                Ver información →
+            </a>
+
+        </section>
+
+
+        <section class="visit-card">
+
+            <h3>¿Querés ayudar?</h3>
+
+            <p>
+                Conoce las alternativas para colaborar
+                con la misión de conservación.
+            </p>
+
+            <a href="donar.html">
+                Formas de ayudar →
+            </a>
+
+        </section>
+
+    </aside>
+
+
+    <footer class="site-footer">
+
+        <div class="footer-grid">
+
+            <section>
+                <h2>FURESA</h2>
+                <p>Fundación Refugio Salvaje.</p>
+            </section>
+
+            <section>
+                <h3>Explora</h3>
+                <a href="index.html">Inicio</a>
+                <a href="animales.html">Animales</a>
+                <a href="ecoturismo.html">Ecoturismo</a>
+            </section>
+
+            <section>
+                <h3>Participa</h3>
+                <a href="donar.html">Donaciones</a>
+                <a href="contacto.html">Contacto</a>
+            </section>
+
+            <section>
+                <h3>Destino</h3>
+                <p>Jayaque, La Libertad, El Salvador.</p>
+            </section>
+
+        </div>
+
+        <div class="footer-bottom">
+            FURESA · Fundación Refugio Salvaje
+        </div>
+
+    </footer>
+
+</div>
+
+</body>
+</html>
