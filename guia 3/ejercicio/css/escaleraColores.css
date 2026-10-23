@@ -1,4 +1,8 @@
 /* Posicionamiento para todos los contenedores de las cartas */
+body {
+  margin: 0;
+}
+
 div {
   position: absolute;
 }
