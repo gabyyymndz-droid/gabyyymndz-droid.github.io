@@ -1,0 +1,5 @@
+body { font-family: sans-serif; margin: 20px; }
+.container { max-width: 800px; margin: auto; }
+.flex-container { display: flex; gap: 10px; margin-bottom: 20px; }
+button { padding: 10px; cursor: pointer; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
