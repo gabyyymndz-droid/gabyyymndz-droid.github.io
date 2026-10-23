@@ -19,7 +19,7 @@ function agregarPedido() {
     const cantidad = parseInt(document.querySelector("#inputCantidad").value);
 
     if (!producto || isNaN(precio) || precio <= 0 || isNaN(cantidad) || cantidad < 1) {
-        alert("Ingrese datos válidos. Precio debe ser > 0 y cantidad un entero >= 1.");
+        alert("Ingrese datos válidos, el precio debe ser mayor a 0 y la cantidad un entero mayor a 1");
         return;
     }
 
@@ -31,7 +31,7 @@ function agregarPedido() {
 function filtrarPedidos() {
     const precioMaximo = parseFloat(document.querySelector("#inputFiltroPrecio").value);
     if (isNaN(precioMaximo) || precioMaximo <= 0) {
-        alert("Ingrese un precio máximo válido para filtrar.");
+        alert("Ingrese un precio máximo válido ");
         return;
     }
 
