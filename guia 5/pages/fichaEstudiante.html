@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../css/stylesFunciones.css" rel="stylesheet" />
+  <link rel="icon" href="../img/js.png" sizes="32x32" type="image/png" />
+  <title>Ficha de Estudiante</title>
+</head>
+<body>
+  <header>
+    <div class="px-3 py-2 text-bg-dark fixed-top">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="../indexFunciones.html" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+            <img src="../img/js.png" alt="JS Logo" width="32" height="32" class="me-2" />
+          </a>
+          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small nav-bar">
+            <li class="text-center">
+              <a href="recursividad.html" class="nav-link text-white">
+                <i class="bi bi-arrow-clockwise bi-2 d-block"></i>
+                Recursividad
+              </a>
+            </li>
+            <li class="text-center">
+              <a href="tabla.html" class="nav-link text-white">
+                <i class="bi bi-table bi-2 d-block"></i>
+                Creando una Tabla
+              </a>
+            </li>
+            <li class="text-center">
+              <a href="formulario.html" class="nav-link text-white">
+                <i class="bi bi-ui-checks bi-2 d-block"></i>
+                Formulario
+              </a>
+            </li>
+            <li class="text-center">
+              <a href="fichaEstudiante.html" class="nav-link text-white fw-bold active">
+                <i class="bi bi-person-badge bi-2 d-block"></i>
+                Ficha Estudiante
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-md" style="margin-top: 90px;">
+    <div class="row">
+      <div class="col-12">
+        <div class="shadow-lg p-4 bg-body rounded mb-5">
+          <h3 class="border-bottom pb-2">Registro de Ficha de Estudiante</h3>
+          
+          <form id="idFormEstudiante" novalidate onsubmit="return false">
+            <div class="row g-3">
+              
+              <div class="col-md-4">
+                <label for="idTxtCarnet" class="form-label">Carnet (Ej: ES001)</label>
+                <input type="text" class="form-control" id="idTxtCarnet" placeholder="GM001" required />
+                <div class="invalid-feedback">Formato inválido (2 letras y 3 números).</div>
+              </div>
+
+             
+              <div class="col-md-8">
+                <label for="idTxtNombre" class="form-label">Nombre Completo</label>
+                <input type="text" class="form-control" id="idTxtNombre" placeholder="Gabriela Sofía Méndez González" required />
+                <div class="invalid-feedback">Solo se permiten letras y espacios.</div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="idTxtDui" class="form-label">DUI (Ej: 00000000-0)</label>
+                <input type="text" class="form-control" id="idTxtDui" placeholder="07626751-5" required />
+                <div class="invalid-feedback">Formato inválido (8 dígitos - 1 dígito).</div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="idTxtNit" class="form-label">NIT (Ej: 0000-000000-000-0)</label>
+                <input type="text" class="form-control" id="idTxtNit" placeholder="0000-111111-222-3" required />
+                <div class="invalid-feedback">Formato inválido de NIT.</div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="idTxtFechaNac" class="form-label">Fecha Nacimiento (DD/MM/AAAA)</label>
+                <input type="text" class="form-control" id="idTxtFechaNac" placeholder="16/1/2007" required />
+                <div class="invalid-feedback">Formato válido: DD/MM/AAAA.</div>
+              </div>
+
+              <div class="col-md-8">
+                <label for="idTxtCorreo" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="idTxtCorreo" placeholder="gabyyymndz@gmail.com" required />
+                <div class="invalid-feedback">Ingrese un correo válido.</div>
+              </div>
+
+          
+              <div class="col-md-4">
+                <label for="idTxtEdad" class="form-label">Edad</label>
+                <input type="text" class="form-control" id="idTxtEdad" placeholder="Ej: 19" required />
+                <div class="invalid-feedback">Ingrese un número entero positivo (1 a 3 dígitos).</div>
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col-12 text-center">
+                <button type="button" class="btn btn-success me-2" id="idBtnGuardarEstudiante">
+                  <i class="bi bi-check-circle-fill me-1"></i> Validar y Guardar Ficha
+                </button>
+                <button type="button" class="btn btn-secondary" id="idBtnLimpiarFicha">
+                  <i class="bi bi-eraser-fill me-1"></i> Limpiar
+                </button>
+              </div>
+            </div>
+          </form>
+
+         
+          <div id="idContenedorFicha" class="mt-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/fichaEstudiante.js"></script>
+</body>
+</html>

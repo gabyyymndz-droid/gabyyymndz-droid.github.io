@@ -46,7 +46,21 @@
         </div>
     </header>
     <div class="container-lg">
-           <!-- CONTINUAR CON EL CODIGO AQUI -->
+        <div class="row">
+        <div class="col-12">
+            <div class="shadow-lg p-3 mt-5 bg-body rounded">
+            <h3>Generando tabla de forma dinámica</h3>
+            <form id="idForm" class="row row-cols-lg-auto g-3 align-items-center" onsubmit="return false">
+                <div class="col-12">
+                <button id="idBtnCrearTabla" type="button" class="btn btn-primary">
+                    <i class="bi bi-table"></i> Crear Tabla
+                </button>
+                </div>
+            </form>
+            <div id="idDivResultado" class="table-responsive pt-3"></div>
+            </div>
+        </div>
+        </div>
     </div>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/tabla.js" defer></script>

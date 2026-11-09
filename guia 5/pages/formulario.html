@@ -46,7 +46,115 @@
         </div>
     </header>
     <div class="container-lg">
-           <!-- CONTINUAR CON EL CODIGO AQUI -->        
+            <div class="row">
+            <div class="col-12">
+                <div class="shadow-lg p-3 mt-5 bg-body rounded">
+                <h3>Formulario de registro de pacientes</h3>
+                <form id="idForm" onsubmit="return false">
+                    <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="idTxtNombre" class="form-label">Nombres</label>
+                        <input type="text" class="form-control" id="idTxtNombre" placeholder="Nombre del paciente" required />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="idTxtApellido" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" id="idTxtApellido" placeholder="Apellido del paciente" required />
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="idTxtFechaNacimiento" class="form-label">Fecha de nacimiento</label>
+                        <input type="date" class="form-control" id="idTxtFechaNacimiento" required />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Sexo</label>
+                        <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rdSexo" id="idRdMasculino" value="Masculino" />
+                            <label class="form-check-label" for="idRdMasculino">Masculino</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rdSexo" id="idRdFemenino" value="Femenino" />
+                            <label class="form-check-label" for="idRdFemenino">Femenino</label>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="idCmbPais" class="form-label">País de origen</label>
+                        <div class="input-group">
+                        <select class="form-select" id="idCmbPais">
+                            <option value="0" selected>Seleccione un país</option>
+                            <option value="1">El Salvador</option>
+                            <option value="2">Guatemala</option>
+                            <option value="3">Honduras</option>
+                        </select>
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#idModal">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="idTxtDireccion" class="form-label">Dirección</label>
+                        <textarea class="form-control" id="idTxtDireccion" rows="2" placeholder="Dirección de residencia"></textarea>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-12 text-center">
+                        <button type="button" class="btn btn-success" id="idBtnAgregar">
+                        <i class="bi bi-person-plus-fill"></i> Guardar Datos
+                        </button>
+                        <button type="button" class="btn btn-warning" id="idBtnLimpiar">
+                        <i class="bi bi-eraser-fill"></i> Limpiar
+                        </button>
+                        <button type="button" class="btn btn-primary" id="idBtnMostrar">
+                        <i class="bi bi-table"></i> Mostrar Pacientes
+                        </button>
+                    </div>
+                    </div>
+                </form>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                    <div id="idTablaPacientes">Ninguno</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="modal fade" id="idModal" tabindex="-1" aria-labelledby="idModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="idModalLabel">Agregar nuevo país</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                    <label for="idNombrePais" class="form-label">Nombre del país</label>
+                    <input type="text" class="form-control" id="idNombrePais" placeholder="Ej. Costa Rica" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="idBtnAddPais" data-bs-dismiss="modal">Guardar País</button>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="idNotificacion" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                <i class="bi bi-info-circle-fill me-2 text-primary"></i>
+                <strong class="me-auto">Notificación</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" id="idMensaje"></div>
+            </div>
+            </div>       
     </div>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/formulario.js" defer></script>
