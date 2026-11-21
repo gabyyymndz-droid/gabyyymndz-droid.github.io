@@ -1,0 +1,108 @@
+body.pagina-musicales {
+  background: radial-gradient(circle at top, #4a0a1f 0%, #1a0510 55%, #0d0208 100%);
+  background-attachment: fixed;
+  color: #f5e9d4;
+  min-height: 100vh;
+}
+
+.pagina-musicales .titulo-escenario {
+  font-family: Georgia, "Times New Roman", serif;
+  color: #f2c14e;
+  letter-spacing: 0.04em;
+}
+
+.pagina-musicales .subtitulo-escenario {
+  color: #d8c3a5;
+}
+
+.pagina-musicales .form-control,
+.pagina-musicales .form-control:focus {
+  background-color: #2a0c18;
+  border-color: #8c6d1f;
+  color: #f5e9d4;
+}
+
+.pagina-musicales .form-control::placeholder {
+  color: #a58f73;
+}
+
+.btn-dorado {
+  background-color: #f2c14e;
+  border-color: #f2c14e;
+  color: #2a0c18;
+  font-weight: 700;
+}
+
+.btn-dorado:hover,
+.btn-dorado:disabled {
+  background-color: #d9a73a;
+  border-color: #d9a73a;
+  color: #2a0c18;
+}
+
+.atajo {
+  border: 1px solid #f2c14e;
+  color: #f2c14e;
+  background: transparent;
+  border-radius: 2rem;
+  padding: 0.25rem 1rem;
+  font-size: 0.9rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.atajo:hover,
+.atajo:focus-visible {
+  background-color: #f2c14e;
+  color: #2a0c18;
+}
+
+.tarjeta-musical {
+  background-color: #2a0c18;
+  border: 1px solid #8c6d1f;
+  color: #f5e9d4;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tarjeta-musical:hover,
+.tarjeta-musical:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 0.5rem 1.25rem rgba(242, 193, 78, 0.25);
+}
+
+.poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  background-color: #1a0510;
+}
+
+.poster-vacio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #8c6d1f;
+}
+
+.modal-musical .modal-content {
+  background-color: #2a0c18;
+  color: #f5e9d4;
+  border: 1px solid #f2c14e;
+}
+
+.modal-musical .modal-header,
+.modal-musical .modal-footer {
+  border-color: #8c6d1f;
+}
+
+.modal-musical .btn-close {
+  filter: invert(1);
+}
+
+.modal-musical dt {
+  color: #f2c14e;
+}
+
+.sinopsis {
+  white-space: pre-line;
+}

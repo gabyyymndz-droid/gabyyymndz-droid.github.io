@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
+    <link href="../css/ejercicio2.css" rel="stylesheet" />
+    <link rel="icon" href="../img/js.png" sizes="32x32" type="image/png" />
+    <title>Cartelera de musicales - Fetch API</title>
+</head>
+
+<body class="pagina-musicales">
+
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="../index.html" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <img src="../img/js.png" class="bi me-2" width="48" height="48" alt="JS">
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="../pages/ejemplo1.html" class="nav-link px-2 text-white">Ejemplo 1</a></li>
+                    <li><a href="../pages/ejemplo2.html" class="nav-link px-2 text-white">Ejemplo 2</a></li>
+                    <li><a href="../pages/ejemplo3.html" class="nav-link px-2 text-white">Ejemplo 3</a></li>
+                    <li><a href="../pages/ejemplo4.html" class="nav-link px-2 text-white">Ejemplo 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <div class="text-center mb-4">
+            <h1 class="display-5 fw-bold titulo-escenario"><i class="bi bi-music-note-beamed"></i> Cartelera de musicales</h1>
+            <p class="lead subtitulo-escenario">
+                Hamilton, La La Land, Rent, Mamma Mia! y más, con la API <strong>Movie Database</strong> de RapidAPI.
+            </p>
+        </div>
+
+        <form id="idFrmBusqueda" class="row g-2 justify-content-center mb-3">
+            <div class="col-md-6">
+                <label for="idTxtTitulo" class="visually-hidden">Título del musical</label>
+                <input type="search" id="idTxtTitulo" class="form-control form-control-lg" placeholder="Escriba el título de un musical">
+            </div>
+            <div class="col-md-auto">
+                <button type="submit" id="idBtnBuscar" class="btn btn-dorado btn-lg w-100">
+                    <i class="bi bi-search"></i> Buscar
+                </button>
+            </div>
+        </form>
+
+        <div id="idAtajos" class="d-flex flex-wrap justify-content-center gap-2 mb-4"></div>
+
+        <div id="idEstado" aria-live="polite"></div>
+
+        <p id="idResumen" class="small subtitulo-escenario"></p>
+        <div id="idCartelera" class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4"></div>
+    </main>
+
+    <div class="modal fade modal-musical" id="idModalFicha" tabindex="-1" aria-labelledby="idTituloFicha" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-4 titulo-escenario" id="idTituloFicha">Ficha</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body" id="idBodyFicha"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dorado" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle"></i> Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/ejercicio2.js" defer></script>
+</body>
+
+</html>
