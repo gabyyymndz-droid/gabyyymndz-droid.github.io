@@ -1,4 +1,4 @@
-const MUSICALES = ["Hamilton", "La La Land", "Rent", "Mamma Mia!"];
+const MUSICALES = ["Hamilton", "La La Land", "Rent", "Mamma Mia!", "Grease"];
 
 const frmBusqueda = document.getElementById("idFrmBusqueda");
 const txtTitulo = document.getElementById("idTxtTitulo");
@@ -76,13 +76,12 @@ const textoErrorHttp = (codigo) => {
   return `La API respondió con un error (código ${codigo}).`;
 };
 
-const consultarApi = async (parametros) => {
+const consultarApi = async (ruta, parametros = {}) => {
   if (API_CONFIG.key.startsWith("PEGUE_AQUI")) {
     throw new Error("Falta la clave de RapidAPI. Péguela en js/config.js.");
   }
 
-  const url = new URL(API_CONFIG.baseUrl);
-  url.searchParams.append("r", "json");
+  const url = new URL(ruta, API_CONFIG.baseUrl);
   for (const [clave, valor] of Object.entries(parametros)) {
     url.searchParams.append(clave, valor);
   }
@@ -102,32 +101,24 @@ const consultarApi = async (parametros) => {
 
   if (!respuesta.ok) throw new Error(textoErrorHttp(respuesta.status));
 
-  const datos = await respuesta.json();
-
-  if (datos.Response === "False") {
-    if (datos.Error === "Movie not found!" || datos.Error === "Too many results.") {
-      throw new SinResultados(datos.Error);
-    }
-    throw new Error(datos.Error || "La API devolvió una respuesta inesperada.");
-  }
-  return datos;
+  return await respuesta.json();
 };
 
 const crearTarjeta = (pelicula) => {
   const col = elemento("div", "col");
   const tarjeta = elemento("article", "card h-100 tarjeta-musical");
 
-  tarjeta.appendChild(crearPoster(pelicula.Poster, pelicula.Title));
+  tarjeta.appendChild(crearPoster(pelicula.primaryImage?.url, pelicula.titleText?.text));
 
   const cuerpo = elemento("div", "card-body d-flex flex-column");
-  cuerpo.appendChild(elemento("h2", "h6 fw-bold", pelicula.Title));
-  cuerpo.appendChild(elemento("p", "small mb-3 flex-grow-1", `Año: ${valorOVacio(pelicula.Year)}`));
+  cuerpo.appendChild(elemento("h2", "h6 titulo-tarjeta", pelicula.titleText?.text || "Sin título"));
+  cuerpo.appendChild(elemento("p", "small mb-3 flex-grow-1 dato-anio", `Año: ${valorOVacio(pelicula.releaseYear?.year)}`));
 
   const boton = elemento("button", "btn btn-dorado btn-sm");
   boton.type = "button";
   boton.appendChild(elemento("i", "bi bi-ticket-perforated me-1"));
   boton.appendChild(document.createTextNode("Ver ficha"));
-  boton.addEventListener("click", () => abrirFicha(pelicula.imdbID, pelicula.Title));
+  boton.addEventListener("click", () => abrirFicha(pelicula.id, pelicula.titleText?.text));
   cuerpo.appendChild(boton);
 
   tarjeta.appendChild(cuerpo);
@@ -142,11 +133,16 @@ const buscarMusical = async (titulo) => {
   mostrarEstado(crearCargando(`Buscando "${titulo}"...`));
 
   try {
-    const datos = await consultarApi({ s: titulo, type: "movie" });
-    const peliculas = datos.Search || [];
+    const datos = await consultarApi(`titles/search/title/${encodeURIComponent(titulo)}`, {
+      exact: "false",
+      titleType: "movie",
+    });
+    const peliculas = datos.results || [];
+
+    if (peliculas.length === 0) throw new SinResultados();
 
     mostrarEstado(null);
-    pResumen.textContent = `Resultados para "${titulo}": ${peliculas.length} de ${datos.totalResults}.`;
+    pResumen.textContent = `Resultados para "${titulo}": ${peliculas.length}.`;
     for (const pelicula of peliculas) divCartelera.appendChild(crearTarjeta(pelicula));
   } catch (error) {
     if (error instanceof SinResultados) {
@@ -166,35 +162,45 @@ const crearDato = (titulo, valor) => {
   return fila;
 };
 
+const formatearFecha = (fecha) => {
+  if (!fecha || !fecha.year) return "";
+  const partes = [fecha.day, fecha.month, fecha.year].filter(Boolean);
+  return partes.join("/");
+};
+
 const dibujarFicha = (pelicula) => {
   vaciar(bodyFicha);
-  tituloFicha.textContent = pelicula.Title;
+  const titulo = pelicula.titleText?.text || "Sin título";
+  tituloFicha.textContent = titulo;
 
   const fila = elemento("div", "row g-4");
 
   const izquierda = elemento("div", "col-md-4");
-  izquierda.appendChild(crearPoster(pelicula.Poster, pelicula.Title));
+  izquierda.appendChild(crearPoster(pelicula.primaryImage?.url, titulo));
   const enlace = elemento("a", "btn btn-dorado w-100 mt-3", "Ver en IMDb");
-  enlace.href = `https://www.imdb.com/title/${pelicula.imdbID}/`;
+  enlace.href = `https://www.imdb.com/title/${pelicula.id}/`;
   enlace.target = "_blank";
   enlace.rel = "noopener noreferrer";
   izquierda.appendChild(enlace);
   fila.appendChild(izquierda);
 
+  const generos = (pelicula.genres?.genres || []).map((g) => g.text).join(", ");
+  const minutos = pelicula.runtime?.seconds ? `${Math.round(pelicula.runtime.seconds / 60)} min` : "";
+  const nota = pelicula.ratingsSummary?.aggregateRating
+    ? `${pelicula.ratingsSummary.aggregateRating} / 10 (${pelicula.ratingsSummary.voteCount} votos)`
+    : "";
+
   const derecha = elemento("div", "col-md-8");
-  derecha.appendChild(elemento("h2", "h5 fw-bold titulo-escenario", "Sinopsis"));
-  derecha.appendChild(elemento("p", "sinopsis", valorOVacio(pelicula.Plot)));
+  derecha.appendChild(elemento("h2", "h5 titulo-escenario", "Sinopsis"));
+  derecha.appendChild(elemento("p", "sinopsis", valorOVacio(pelicula.plot?.plotText?.plainText)));
 
   const datos = elemento("dl", "small mb-0");
-  datos.appendChild(crearDato("Estreno", pelicula.Released));
-  datos.appendChild(crearDato("Duración", pelicula.Runtime));
-  datos.appendChild(crearDato("Género", pelicula.Genre));
-  datos.appendChild(crearDato("Director", pelicula.Director));
-  datos.appendChild(crearDato("Reparto", pelicula.Actors));
-  datos.appendChild(crearDato("Idioma", pelicula.Language));
-  datos.appendChild(crearDato("País", pelicula.Country));
-  datos.appendChild(crearDato("Premios", pelicula.Awards));
-  datos.appendChild(crearDato("Calificación IMDb", pelicula.imdbRating === "N/A" ? "" : `${pelicula.imdbRating} / 10`));
+  datos.appendChild(crearDato("Año", pelicula.releaseYear?.year ? String(pelicula.releaseYear.year) : ""));
+  datos.appendChild(crearDato("Estreno", formatearFecha(pelicula.releaseDate)));
+  datos.appendChild(crearDato("Duración", minutos));
+  datos.appendChild(crearDato("Género", generos));
+  datos.appendChild(crearDato("Tipo", pelicula.titleType?.text));
+  datos.appendChild(crearDato("Calificación IMDb", nota));
   derecha.appendChild(datos);
 
   fila.appendChild(derecha);
@@ -208,8 +214,8 @@ const abrirFicha = async (id, titulo) => {
   modalFicha.show();
 
   try {
-    const pelicula = await consultarApi({ i: id, plot: "full" });
-    dibujarFicha(pelicula);
+    const datos = await consultarApi(`titles/${encodeURIComponent(id)}`, { info: "base_info" });
+    dibujarFicha(datos.results);
   } catch (error) {
     vaciar(bodyFicha);
     bodyFicha.appendChild(
