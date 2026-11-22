@@ -1,141 +1,159 @@
 .pagina-musicales {
-  --fondo-azul-negro: #0b1120;
-  --superficie-azul: #131c31;
-  --borde-azul: #243354;
-  --texto-principal: #f4f6fb;
-  --texto-secundario: #a5b4d4;
-  --acento-dorado: #f2c14e;
-  --acento-dorado-oscuro: #d9a73a;
+  --fondo-hueso: #f6f4ee;
+  --superficie-hueso: #edeae1;
+  --azul-marino: #0b1654;
+  --morado: #431d8d;
+  --amarillo-js: #f7df1e;
 
   font-family: "Inter", sans-serif;
   font-weight: 400;
-  background-color: var(--fondo-azul-negro);
-  color: var(--texto-principal);
+  background-color: var(--fondo-hueso);
+  color: var(--azul-marino);
   min-height: 100vh;
 }
 
 .barra-estreno {
-  background-color: #080d18;
-  border-bottom: 1px solid var(--borde-azul);
+  background-color: var(--fondo-hueso);
+  border: none;
 }
 
 .barra-estreno .nav-link {
-  color: var(--texto-secundario);
+  color: var(--azul-marino);
   font-weight: 400;
+  border: none;
 }
 
 .barra-estreno .nav-link:hover,
 .barra-estreno .nav-link:focus-visible {
-  color: var(--texto-principal);
+  color: var(--morado);
 }
 
 .barra-estreno .enlace-activo {
-  color: var(--acento-dorado) !important;
+  color: var(--morado) !important;
+  background-color: transparent;
+  border: none;
   font-weight: 600;
 }
 
 .pagina-musicales .titulo-escenario {
   font-family: "Inter", sans-serif;
   font-weight: 600;
-  color: var(--acento-dorado);
+  color: var(--azul-marino);
   letter-spacing: -0.02em;
 }
 
 .pagina-musicales .subtitulo-escenario {
   font-family: "Inter", sans-serif;
   font-weight: 400;
-  color: var(--texto-secundario);
+  color: var(--morado);
 }
 
 .resumen-busqueda {
   font-weight: 600;
+  color: var(--azul-marino);
 }
 
 .pagina-musicales .form-control,
 .pagina-musicales .form-control:focus {
-  background-color: var(--superficie-azul);
-  border-color: var(--borde-azul);
-  color: var(--texto-principal);
+  background-color: var(--superficie-hueso);
+  border: none;
+  color: var(--azul-marino);
   font-family: "Inter", sans-serif;
   font-weight: 400;
-}
-
-.pagina-musicales .form-control:focus {
-  border-color: var(--acento-dorado);
-  box-shadow: 0 0 0 0.2rem rgba(242, 193, 78, 0.18);
+  box-shadow: none;
 }
 
 .pagina-musicales .form-control::placeholder {
-  color: #7b8bad;
+  color: var(--azul-marino);
+  opacity: 0.55;
   font-weight: 400;
 }
 
+.pagina-musicales input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+  background-color: var(--azul-marino);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='currentColor' d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='currentColor' d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
 .btn-dorado {
-  background-color: var(--acento-dorado);
-  border-color: var(--acento-dorado);
-  color: var(--fondo-azul-negro);
+  background-color: var(--amarillo-js);
+  border: none;
+  color: var(--azul-marino);
   font-family: "Inter", sans-serif;
   font-weight: 600;
+  box-shadow: none;
 }
 
 .btn-dorado:hover,
 .btn-dorado:focus-visible,
 .btn-dorado:disabled {
-  background-color: var(--acento-dorado-oscuro);
-  border-color: var(--acento-dorado-oscuro);
-  color: var(--fondo-azul-negro);
+  background-color: var(--morado);
+  border: none;
+  color: var(--fondo-hueso);
 }
 
 .atajo {
-  border: 1px solid var(--borde-azul);
-  color: var(--texto-principal);
-  background-color: var(--superficie-azul);
+  border: none;
+  color: var(--azul-marino);
+  background-color: var(--superficie-hueso);
   border-radius: 2rem;
-  padding: 0.25rem 1rem;
+  padding: 0.3rem 1rem;
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
-  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .atajo:hover,
 .atajo:focus-visible {
-  background-color: var(--acento-dorado);
-  border-color: var(--acento-dorado);
-  color: var(--fondo-azul-negro);
+  background-color: var(--morado);
+  color: var(--fondo-hueso);
   font-weight: 600;
 }
 
 .tarjeta-musical {
-  background-color: var(--superficie-azul);
-  border: 1px solid var(--borde-azul);
-  color: var(--texto-principal);
-  transition: transform 0.15s ease, border-color 0.15s ease;
+  background-color: var(--superficie-hueso);
+  border: none;
+  color: var(--azul-marino);
+  box-shadow: none;
+  transition: transform 0.15s ease, background-color 0.15s ease;
 }
 
 .tarjeta-musical:hover,
 .tarjeta-musical:focus-within {
-  transform: translateY(-4px);
-  border-color: var(--acento-dorado);
+  transform: translateY(-3px);
+  background-color: #e4dfd3;
 }
 
 .titulo-tarjeta {
   font-family: "Inter", sans-serif;
   font-weight: 600;
-  color: var(--texto-principal);
+  color: var(--azul-marino);
 }
 
 .dato-anio {
   font-family: "Inter", sans-serif;
   font-weight: 400;
-  color: var(--texto-secundario);
+  color: var(--morado);
 }
 
 .poster {
   width: 100%;
   aspect-ratio: 2 / 3;
   object-fit: cover;
-  background-color: var(--fondo-azul-negro);
+  border-radius: 0.4rem;
+  border: none;
+  background-color: var(--superficie-hueso);
+}
+
+.tarjeta-musical .poster {
+  border-radius: 0;
+  border: none;
 }
 
 .poster-vacio {
@@ -143,37 +161,74 @@
   align-items: center;
   justify-content: center;
   font-size: 3rem;
-  color: var(--acento-dorado);
+  color: var(--morado);
 }
 
 .modal-musical .modal-content {
-  background-color: var(--superficie-azul);
-  color: var(--texto-principal);
-  border: 1px solid var(--borde-azul);
+  background-color: var(--fondo-hueso);
+  color: var(--azul-marino);
+  border: none;
+  border-radius: 0.65rem;
+  box-shadow: none;
 }
 
 .modal-musical .modal-header,
 .modal-musical .modal-footer {
-  border-color: var(--borde-azul);
+  border: none;
 }
 
-.modal-musical .btn-close {
-  filter: invert(1);
+.ficha-bloque-sinopsis,
+.ficha-bloque-datos {
+  background-color: var(--superficie-hueso);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1.15rem 1.25rem;
 }
 
-.modal-musical dt {
+.ficha-seccion-titulo {
   font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
   font-weight: 600;
-  color: var(--acento-dorado);
-}
-
-.modal-musical dd {
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--morado);
+  margin-bottom: 0.65rem;
 }
 
 .sinopsis {
   font-family: "Inter", sans-serif;
+  font-size: 0.96rem;
   font-weight: 400;
+  line-height: 1.65;
+  color: var(--azul-marino);
   white-space: pre-line;
+}
+
+.ficha-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.65rem 1rem;
+}
+
+.ficha-fila {
+  background-color: var(--fondo-hueso);
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.6rem 0.8rem;
+}
+
+.ficha-etiqueta {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--morado);
+  margin-bottom: 0.2rem;
+}
+
+.ficha-valor {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--azul-marino);
+  margin-bottom: 0;
 }

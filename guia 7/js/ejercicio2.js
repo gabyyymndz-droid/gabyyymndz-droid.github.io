@@ -108,17 +108,17 @@ const crearTarjeta = (pelicula) => {
   const col = elemento("div", "col");
   const tarjeta = elemento("article", "card h-100 tarjeta-musical");
 
-  tarjeta.appendChild(crearPoster(pelicula.primaryImage?.url, pelicula.titleText?.text));
+  tarjeta.appendChild(crearPoster(pelicula.i?.imageUrl, pelicula.l));
 
   const cuerpo = elemento("div", "card-body d-flex flex-column");
-  cuerpo.appendChild(elemento("h2", "h6 titulo-tarjeta", pelicula.titleText?.text || "Sin título"));
-  cuerpo.appendChild(elemento("p", "small mb-3 flex-grow-1 dato-anio", `Año: ${valorOVacio(pelicula.releaseYear?.year)}`));
+  cuerpo.appendChild(elemento("h2", "h6 titulo-tarjeta", pelicula.l || "Sin título"));
+  cuerpo.appendChild(elemento("p", "small mb-3 flex-grow-1 dato-anio", `Año: ${valorOVacio(pelicula.y)}`));
 
   const boton = elemento("button", "btn btn-dorado btn-sm");
   boton.type = "button";
   boton.appendChild(elemento("i", "bi bi-ticket-perforated me-1"));
   boton.appendChild(document.createTextNode("Ver ficha"));
-  boton.addEventListener("click", () => abrirFicha(pelicula.id, pelicula.titleText?.text));
+  boton.addEventListener("click", () => abrirFicha(pelicula.id, pelicula.l));
   cuerpo.appendChild(boton);
 
   tarjeta.appendChild(cuerpo);
@@ -133,11 +133,10 @@ const buscarMusical = async (titulo) => {
   mostrarEstado(crearCargando(`Buscando "${titulo}"...`));
 
   try {
-    const datos = await consultarApi(`titles/search/title/${encodeURIComponent(titulo)}`, {
-      exact: "false",
-      titleType: "movie",
-    });
-    const peliculas = datos.results || [];
+    const datos = await consultarApi("auto-complete", { q: titulo });
+    const peliculas = (datos.d || []).filter(
+      (item) => item.id && item.id.startsWith("tt") && (item.qid === "movie" || item.qid === "tvMovie")
+    );
 
     if (peliculas.length === 0) throw new SinResultados();
 
@@ -156,52 +155,52 @@ const buscarMusical = async (titulo) => {
 };
 
 const crearDato = (titulo, valor) => {
-  const fila = elemento("div", "row py-1 border-bottom border-secondary");
-  fila.appendChild(elemento("dt", "col-sm-4", titulo));
-  fila.appendChild(elemento("dd", "col-sm-8 mb-0", valorOVacio(valor)));
+  const fila = elemento("div", "ficha-fila");
+  fila.appendChild(elemento("dt", "ficha-etiqueta", titulo));
+  fila.appendChild(elemento("dd", "ficha-valor", valorOVacio(valor)));
   return fila;
 };
 
-const formatearFecha = (fecha) => {
-  if (!fecha || !fecha.year) return "";
-  const partes = [fecha.day, fecha.month, fecha.year].filter(Boolean);
-  return partes.join("/");
-};
-
-const dibujarFicha = (pelicula) => {
+const dibujarFicha = (datos, id) => {
   vaciar(bodyFicha);
-  const titulo = pelicula.titleText?.text || "Sin título";
+  const info = datos.title || {};
+  const titulo = info.title || "Sin título";
   tituloFicha.textContent = titulo;
 
-  const fila = elemento("div", "row g-4");
+  const fila = elemento("div", "row g-4 align-items-start");
 
-  const izquierda = elemento("div", "col-md-4");
-  izquierda.appendChild(crearPoster(pelicula.primaryImage?.url, titulo));
+  const izquierda = elemento("div", "col-md-4 ficha-poster-col");
+  izquierda.appendChild(crearPoster(info.image?.url, titulo));
   const enlace = elemento("a", "btn btn-dorado w-100 mt-3", "Ver en IMDb");
-  enlace.href = `https://www.imdb.com/title/${pelicula.id}/`;
+  enlace.href = `https://www.imdb.com/title/${id}/`;
   enlace.target = "_blank";
   enlace.rel = "noopener noreferrer";
   izquierda.appendChild(enlace);
   fila.appendChild(izquierda);
 
-  const generos = (pelicula.genres?.genres || []).map((g) => g.text).join(", ");
-  const minutos = pelicula.runtime?.seconds ? `${Math.round(pelicula.runtime.seconds / 60)} min` : "";
-  const nota = pelicula.ratingsSummary?.aggregateRating
-    ? `${pelicula.ratingsSummary.aggregateRating} / 10 (${pelicula.ratingsSummary.voteCount} votos)`
+  const generos = Array.isArray(datos.genres) ? datos.genres.join(", ") : "";
+  const minutos = info.runningTimeInMinutes ? `${info.runningTimeInMinutes} min` : "";
+  const nota = datos.ratings?.rating
+    ? `${datos.ratings.rating} / 10 (${datos.ratings.ratingCount} votos)`
     : "";
+  const sinopsis = datos.plotSummary?.text || datos.plotOutline?.text;
 
-  const derecha = elemento("div", "col-md-8");
-  derecha.appendChild(elemento("h2", "h5 titulo-escenario", "Sinopsis"));
-  derecha.appendChild(elemento("p", "sinopsis", valorOVacio(pelicula.plot?.plotText?.plainText)));
+  const derecha = elemento("div", "col-md-8 ficha-detalle-col");
+  const bloqueSinopsis = elemento("div", "ficha-bloque-sinopsis mb-4");
+  bloqueSinopsis.appendChild(elemento("h2", "ficha-seccion-titulo", "Sinopsis"));
+  bloqueSinopsis.appendChild(elemento("p", "sinopsis mb-0", valorOVacio(sinopsis)));
+  derecha.appendChild(bloqueSinopsis);
 
-  const datos = elemento("dl", "small mb-0");
-  datos.appendChild(crearDato("Año", pelicula.releaseYear?.year ? String(pelicula.releaseYear.year) : ""));
-  datos.appendChild(crearDato("Estreno", formatearFecha(pelicula.releaseDate)));
-  datos.appendChild(crearDato("Duración", minutos));
-  datos.appendChild(crearDato("Género", generos));
-  datos.appendChild(crearDato("Tipo", pelicula.titleType?.text));
-  datos.appendChild(crearDato("Calificación IMDb", nota));
-  derecha.appendChild(datos);
+  const bloqueDatos = elemento("div", "ficha-bloque-datos");
+  bloqueDatos.appendChild(elemento("h3", "ficha-seccion-titulo", "Detalles"));
+  const lista = elemento("dl", "ficha-lista mb-0");
+  lista.appendChild(crearDato("Año", info.year ? String(info.year) : ""));
+  lista.appendChild(crearDato("Estreno", datos.releaseDate));
+  lista.appendChild(crearDato("Duración", minutos));
+  lista.appendChild(crearDato("Género", generos));
+  lista.appendChild(crearDato("Calificación IMDb", nota));
+  bloqueDatos.appendChild(lista);
+  derecha.appendChild(bloqueDatos);
 
   fila.appendChild(derecha);
   bodyFicha.appendChild(fila);
@@ -214,8 +213,8 @@ const abrirFicha = async (id, titulo) => {
   modalFicha.show();
 
   try {
-    const datos = await consultarApi(`titles/${encodeURIComponent(id)}`, { info: "base_info" });
-    dibujarFicha(datos.results);
+    const datos = await consultarApi("title/get-overview-details", { tconst: id, currentCountry: "US" });
+    dibujarFicha(datos, id);
   } catch (error) {
     vaciar(bodyFicha);
     bodyFicha.appendChild(
